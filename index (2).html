@@ -1,0 +1,635 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Евгения Романова — психолог и астролог</title>
+<meta name="description" content="Астрология как навигация: понять внутреннее устройство, увидеть повторяющийся сценарий и выбрать направление. Консультации, письменные разборы, сессии «карта плюс регресс».">
+<style>
+:root{
+  color-scheme:light;
+  --garnet:#6B1F2B;        /* главный глубокий акцент */
+  --garnet-soft:#8A2E3C;
+  --powder:#EFD8C4;        /* пудрово-телесный, основа */
+  --graphite:#2E2B29;      /* текст, контраст */
+  --rose:#B87E76;          /* розовое золото, плотное */
+  --card:#F8EADC;
+  --field:#FDF8F2;
+  /* розовое золото: светлый блик убран с самого края, чтобы не растворялся на пудре */
+  --gold:linear-gradient(95deg,#F0C5B0 0%,#E2A591 20%,#874C4C 47%,#F9E0CA 66%,#9E605C 100%);
+
+  --bg:var(--powder);
+  --surface:var(--card);
+  --surface-2:var(--field);
+  --ink:var(--graphite);
+  --ink2:#4C4540;
+  --muted:#6E635D;
+  --line:rgba(184,126,118,.42);
+  --line-2:rgba(184,126,118,.66);
+  --serif:Georgia,"Iowan Old Style","Times New Roman",serif;
+  --sans:system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+/* фирменная золотая линия по верху страницы */
+.topgold{height:4px;background:var(--gold);position:relative;z-index:50}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+  font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+.wrap{max-width:1060px;margin:0 auto;padding:0 24px}
+
+/* ---------- шапка ---------- */
+.nav{position:sticky;top:0;z-index:40;backdrop-filter:blur(14px);
+  background:rgba(239,216,196,.9);transition:box-shadow .2s;position:sticky}
+.nav::after{content:"";position:absolute;inset:auto 0 0 0;height:2px;background:var(--gold);
+  opacity:0;transition:opacity .22s}
+.nav.stuck::after{opacity:1}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;height:64px}
+.brand{font-family:var(--serif);font-size:17px;letter-spacing:.02em;color:var(--ink);text-decoration:none;white-space:nowrap}
+.brand .dot{color:var(--garnet)}
+@media(max-width:640px){
+  .brand .dot,.brand-sub{display:none}
+  .brand{font-size:16px}
+  .nav-cta{padding:8px 13px;font-size:13.5px}
+}
+.nav-links{display:flex;gap:26px;align-items:center}
+.nav-links a{color:var(--ink2);text-decoration:none;font-size:14.5px;transition:color .15s}
+.nav-links a:hover{color:var(--garnet)}
+.nav-cta{display:inline-block;border:1px solid var(--line-2);color:var(--garnet);text-decoration:none;
+  font-size:14px;padding:8px 16px;border-radius:8px;transition:background .15s,border-color .15s;white-space:nowrap}
+.nav-cta:hover{background:rgba(107,31,43,.08);border-color:var(--garnet)}
+@media(max-width:900px){.nav-links{display:none}}
+
+/* ---------- hero ---------- */
+.hero{position:relative;padding:92px 0 84px;overflow:hidden;
+  background:linear-gradient(180deg,#F5E3D2 0%,var(--powder) 66%)}
+.hero::before{content:"";position:absolute;inset:-260px 0 auto 50%;transform:translateX(-50%);
+  width:1000px;height:700px;pointer-events:none;
+  background:radial-gradient(ellipse at center,rgba(184,126,118,.3),transparent 63%)}
+.hero::after{content:"";position:absolute;right:-150px;top:200px;width:430px;height:430px;
+  border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle at 45% 45%,rgba(107,31,43,.12),transparent 66%)}
+.hero>*{position:relative}
+.kicker{color:var(--garnet);font-size:12.5px;letter-spacing:.22em;text-transform:uppercase;margin:0 0 24px;font-weight:600}
+h1{font-family:var(--serif);font-weight:400;font-size:clamp(34px,5.4vw,58px);line-height:1.12;
+  letter-spacing:-.015em;margin:0 0 22px;max-width:20ch}
+h1 em{font-style:italic;color:var(--garnet)}
+.goldrule{height:5px;border-radius:3px;background:var(--gold);width:280px;margin:0 0 28px;
+  box-shadow:0 2px 10px rgba(135,76,76,.22)}
+@media(max-width:560px){.goldrule{width:200px;height:4px}}
+.hero p.lead{font-size:clamp(17px,2.1vw,20px);color:var(--ink2);max-width:58ch;margin:0 0 38px;line-height:1.55}
+.cta-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.btn{display:inline-block;background:var(--garnet);color:var(--powder);text-decoration:none;
+  font-weight:600;font-size:16px;padding:15px 30px;border-radius:9px;border:1px solid var(--garnet);
+  box-shadow:0 8px 22px rgba(107,31,43,.16);
+  transition:transform .12s ease,background .12s ease,border-color .12s ease}
+.btn:hover{background:var(--graphite);border-color:var(--graphite);transform:translateY(-1px)}
+.btn.ghost{color:var(--ink);border:1px solid transparent;font-weight:500;box-shadow:none;
+  background-image:linear-gradient(var(--powder),var(--powder)),var(--gold);
+  background-origin:border-box;background-clip:padding-box,border-box}
+.btn.ghost:hover{color:var(--garnet);transform:translateY(-1px);
+  background-image:linear-gradient(var(--card),var(--card)),var(--gold)}
+.under{color:var(--muted);font-size:14px;margin-top:20px}
+
+/* полоса методов */
+.strip{display:flex;flex-wrap:wrap;gap:10px;margin-top:44px}
+.chip{border:1px solid var(--line);background:rgba(253,248,242,.6);border-radius:100px;
+  padding:8px 17px;color:var(--ink2);font-size:14px}
+
+/* ---------- секции ---------- */
+section{padding:76px 0;position:relative}
+section::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent 0%,rgba(226,165,145,.6) 14%,#874C4C 50%,rgba(226,165,145,.6) 86%,transparent 100%)}
+section.tinted{background:var(--field)}
+/* надзаголовок с золотой чертой */
+.eyebrow{color:var(--garnet);font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;margin:0 0 18px;
+  display:flex;align-items:center;gap:12px}
+.eyebrow::after{content:"";flex:0 0 64px;height:3px;border-radius:2px;background:var(--gold)}
+h2{font-family:var(--serif);font-weight:400;font-size:clamp(26px,3.4vw,36px);line-height:1.2;
+  letter-spacing:-.01em;margin:0 0 18px;max-width:24ch}
+.sect-lead{color:var(--ink2);max-width:64ch;margin:0 0 42px;font-size:17.5px}
+
+/* обо мне */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start}
+@media(max-width:860px){.about{grid-template-columns:1fr;gap:28px}}
+.about p{color:var(--ink2);font-size:16.5px;margin:0 0 16px}
+.about p:last-child{margin-bottom:0}
+.quote{font-family:var(--serif);font-size:23px;line-height:1.4;color:var(--garnet);
+  padding-left:24px;margin:0 0 26px;position:relative}
+.quote::before{content:"";position:absolute;left:0;top:2px;bottom:2px;width:4px;border-radius:2px;
+  background:linear-gradient(180deg,#F9E0CA 0%,#E2A591 24%,#874C4C 50%,#F0C5B0 72%,#9E605C 100%)}
+.facts{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.facts li{padding:14px 0;border-bottom:1px solid var(--line);color:var(--ink2);font-size:15.5px;
+  display:grid;grid-template-columns:104px 1fr;gap:16px}
+.facts li span{color:var(--muted);font-size:13.5px}
+@media(max-width:520px){.facts li{grid-template-columns:1fr;gap:4px}}
+
+/* запросы */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:900px){.grid-3{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.grid-3{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px 28px;
+  position:relative;overflow:hidden;transition:border-color .18s,box-shadow .18s}
+.card::before{content:"";position:absolute;top:0;left:0;width:64px;height:4px;background:var(--gold)}
+.card:hover{border-color:var(--rose);box-shadow:0 10px 26px rgba(46,43,41,.07)}
+section.tinted .card{background:var(--card)}
+.card h3{margin:0 0 10px;font-size:18px;font-weight:600;line-height:1.3}
+.card p{margin:0;color:var(--ink2);font-size:15.5px}
+/* градиент укладывается ровно по ширине цифры, иначе виден только светлый край */
+.card .num{font-family:var(--serif);font-size:19px;letter-spacing:.12em;margin-bottom:14px;
+  display:inline-block;background:linear-gradient(100deg,#E2A591 0%,#874C4C 45%,#9E605C 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* форматы работы */
+.tiers{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:860px){.tiers{grid-template-columns:1fr}}
+.tier{background:var(--field);border:1px solid var(--line);border-radius:16px;padding:34px 30px 26px;
+  display:flex;flex-direction:column;position:relative;overflow:hidden;
+  transition:border-color .18s,transform .18s,box-shadow .18s}
+/* золотая кромка по верху каждой карточки */
+.tier::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--gold);
+  opacity:.75;transition:opacity .18s}
+.tier:hover{border-color:var(--rose);transform:translateY(-2px);box-shadow:0 12px 30px rgba(46,43,41,.09)}
+.tier:hover::before{opacity:1}
+.tier.free{background:var(--card);border:1px solid var(--rose)}
+.tier.free::before{opacity:1;height:6px}
+.tier.soon{background:transparent;border:1px dashed var(--line-2)}
+.tier.soon::before{opacity:.4}
+.tier.soon .meta{color:var(--rose)}
+.soon-line{padding-top:18px;border-top:1px solid var(--line);margin-bottom:16px;
+  font-family:var(--serif);font-size:20px;color:var(--rose)}
+.tier .meta{color:var(--muted);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 14px}
+.tier h3{font-family:var(--serif);font-weight:400;font-size:24px;line-height:1.22;margin:0 0 14px;letter-spacing:-.01em}
+.tier p{margin:0 0 16px;color:var(--ink2);font-size:16px}
+.tier ul{margin:0 0 18px;padding-left:19px;color:var(--ink2);font-size:15.5px}
+.tier li{margin-bottom:6px}
+.tier .grow{flex:1}
+.price,.soon-line{position:relative}
+.price::before,.soon-line::before{content:"";position:absolute;top:0;left:0;width:52px;height:2px;
+  border-radius:2px;background:var(--gold)}
+.price{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;
+  padding-top:18px;border-top:1px solid var(--line);margin-bottom:16px}
+.price b{font-family:var(--serif);font-weight:400;font-size:28px;color:var(--garnet);letter-spacing:-.01em}
+.price s{color:var(--muted);font-size:15px}
+.price .free-tag{font-family:var(--serif);font-size:28px;color:var(--garnet)}
+.word{display:inline-flex;align-items:center;gap:9px;text-decoration:none;color:var(--ink);
+  border:1px solid var(--line-2);border-radius:9px;padding:11px 18px;font-size:15px;
+  transition:background .15s,border-color .15s;align-self:flex-start}
+.word:hover{background:var(--card);border-color:transparent;
+  background-image:linear-gradient(var(--card),var(--card)),var(--gold);
+  background-origin:border-box;background-clip:padding-box,border-box}
+.word b{color:var(--garnet);font-weight:600;letter-spacing:.06em}
+.tier-note{color:var(--muted);font-size:14px;margin:24px 0 0}
+
+/* отзывы */
+.reviews{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media(max-width:900px){.reviews{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:620px){.reviews{grid-template-columns:repeat(2,1fr)}}
+.rev{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;
+  cursor:zoom-in;padding:0;height:190px;position:relative;transition:border-color .18s,box-shadow .18s}
+.rev:hover{border-color:transparent;box-shadow:0 10px 24px rgba(46,43,41,.12);
+  background-image:linear-gradient(#fff,#fff),var(--gold);
+  background-origin:border-box;background-clip:padding-box,border-box}
+.rev img{width:100%;height:100%;object-fit:cover;object-position:top center}
+.rev::after{content:"";position:absolute;inset:auto 0 0 0;height:70px;
+  background:linear-gradient(to top,#fff,rgba(255,255,255,0))}
+
+/* лайтбокс */
+.lb{position:fixed;inset:0;z-index:80;background:rgba(46,43,41,.94);display:none;
+  align-items:center;justify-content:center;padding:32px 20px}
+.lb.open{display:flex}
+.lb img{max-height:86vh;max-width:min(560px,92vw);border-radius:12px}
+.lb-close,.lb-prev,.lb-next{position:absolute;background:rgba(239,216,196,.1);border:1px solid rgba(239,216,196,.4);
+  color:var(--powder);border-radius:50%;width:44px;height:44px;font-size:20px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;transition:background .15s}
+.lb-close:hover,.lb-prev:hover,.lb-next:hover{background:rgba(239,216,196,.24)}
+.lb-close{top:22px;right:22px}
+.lb-prev{left:18px;top:50%;transform:translateY(-50%)}
+.lb-next{right:18px;top:50%;transform:translateY(-50%)}
+.lb-count{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);color:rgba(239,216,196,.75);font-size:13.5px}
+
+/* faq */
+.faq{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:860px){.faq{grid-template-columns:1fr}}
+.fq{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 24px}
+.fq h3{margin:0 0 9px;font-size:16px;font-weight:600;color:var(--garnet)}
+.fq p{margin:0;color:var(--ink2);font-size:15px}
+
+.not{background:rgba(184,126,118,.12);border:1px dashed var(--line-2);border-radius:14px;
+  padding:26px 28px;margin-top:22px;position:relative;overflow:hidden}
+.not::before{content:"";position:absolute;top:0;left:0;bottom:0;width:4px;background:var(--gold)}
+.chip{transition:border-color .15s,background .15s}
+.chip:hover{border-color:var(--rose);background:var(--card)}
+.not .t{color:var(--garnet);font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;margin:0 0 14px}
+.not ul{margin:0;padding-left:20px;color:var(--ink2);font-size:15.5px}
+.not li{margin-bottom:8px}
+
+/* финал */
+.final{text-align:center;padding:92px 0 108px;position:relative;overflow:hidden;
+  border-top:1px solid var(--line);
+  background:linear-gradient(180deg,var(--powder) 0%,#F3DFCC 100%)}
+.final::before{content:"";position:absolute;inset:auto 50% -330px;transform:translateX(50%);
+  width:900px;height:560px;pointer-events:none;
+  background:radial-gradient(ellipse at center,rgba(184,126,118,.34),transparent 66%)}
+.final>*{position:relative}
+.final h2{margin:0 auto 20px;max-width:20ch}
+.final .goldrule{margin:0 auto 26px}
+.final p{color:var(--ink2);max-width:54ch;margin:0 auto 34px;font-size:17.5px}
+
+/* подвал */
+footer{padding:44px 0 60px;background:var(--graphite);color:rgba(239,216,196,.62);font-size:13.5px;
+  border-top:4px solid transparent;background-image:linear-gradient(var(--graphite),var(--graphite)),var(--gold);
+  background-origin:border-box;background-clip:padding-box,border-box}
+footer .who{color:var(--powder);font-size:15px;margin:0 0 10px}
+footer p{margin:0 0 9px}
+footer a{color:#E2A591}
+.legal{list-style:none;margin:0 0 22px;padding:0;display:flex;flex-wrap:wrap;gap:9px}
+.legal a{display:inline-block;border:1px solid rgba(239,216,196,.26);border-radius:99px;
+  padding:8px 16px;color:var(--powder);text-decoration:none;font-size:13.5px;transition:border-color .15s,background .15s}
+.legal a:hover{border-color:#E2A591;background:rgba(239,216,196,.08)}
+.foot-sep{height:1px;background:rgba(239,216,196,.16);margin:24px 0}
+.req{font-size:12.5px;color:rgba(239,216,196,.45)}
+</style></head><body>
+
+<div class="topgold"></div>
+
+<!-- ================= ШАПКА ================= -->
+<div class="nav" id="nav"><div class="wrap">
+  <a class="brand" href="#top">Евгения Романова <span class="dot">·</span> <span class="brand-sub">Тонкие настройки</span></a>
+  <nav class="nav-links">
+    <a href="#about">Обо мне</a>
+    <a href="#zaprosy">С чем приходят</a>
+    <a href="#formats">Форматы</a>
+    <a href="#reviews">Отзывы</a>
+    <a href="#faq">Вопросы</a>
+  </nav>
+  <a class="nav-cta" href="https://t.me/astrotune_practice" target="_blank" rel="noopener">Написать в Telegram</a>
+</div></div>
+
+<!-- ================= HERO ================= -->
+<div class="hero" id="top"><div class="wrap">
+  <p class="kicker">Психолог · астролог · регрессолог</p>
+  <h1>Астрология как навигация, а не как <em>предсказание</em></h1>
+  <div class="goldrule"></div>
+  <p class="lead">Помогаю увидеть внутреннее устройство, понять, почему один и тот же сценарий
+  повторяется, и выбрать направление, которое подходит именно вашей жизни — с её работой,
+  семьёй и запасом сил.</p>
+  <div class="cta-row">
+    <a class="btn" href="https://t.me/astrotune_practice" target="_blank" rel="noopener">Написать мне в Telegram</a>
+    <a class="btn ghost" href="#formats">Посмотреть форматы работы</a>
+  </div>
+  <p class="under">Отвечаю лично. Если мой формат вашей ситуации не подходит, я скажу об этом прямо.</p>
+
+  <div class="strip">
+    <div class="chip">Натальная астрология</div>
+    <div class="chip">Хорар</div>
+    <div class="chip">Финансовая астрология</div>
+    <div class="chip">Синастрия</div>
+    <div class="chip">Регрессивный гипноз</div>
+    <div class="chip">Медитации</div>
+  </div>
+</div></div>
+
+<!-- ================= ОБО МНЕ ================= -->
+<section id="about"><div class="wrap">
+  <p class="eyebrow">Обо мне</p>
+  <h2>Евгения Романова</h2>
+
+  <div class="about">
+    <div>
+      <p class="quote">«Я не предсказываю. Я настраиваюсь.»</p>
+      <p>Я психолог и астролог. В профессию пришла через психологию, затем повысила
+      квалификацию регрессолога и несколько лет работала с людьми в трансовых техниках.
+      Астрология появилась позже и оказалась тем инструментом, который объясняет,
+      почему похожие обстоятельства разные люди проживают по-разному.</p>
+      <p>Мне интересно не столько назвать положение в карте, сколько понять, как оно
+      проявляется в обычной жизни: в том, как человек принимает решения, где берёт
+      лишнюю ответственность, что даёт ему безопасность и на что он может опереться
+      в трудный период.</p>
+      <p>Я не занимаю позицию человека, которому известны все ответы. Свои взгляды
+      я пересматривала не раз и говорю об этом открыто. Окончательное решение
+      в любом случае остаётся за вами.</p>
+    </div>
+
+    <ul class="facts">
+      <li><span>Подход</span>Соединение астрологического анализа, психологического
+        понимания и практической применимости</li>
+      <li><span>Методы</span>Натальная астрология, хорар, финансовая астрология,
+        синастрия, регрессивный гипноз</li>
+      <li><span>Обучение</span>Астропсихология, хорарная астрология, астроминералогия,
+        анализ сферы недвижимости</li>
+      <li><span>Канал</span>«Тонкие настройки» — с декабря 2023 года</li>
+      <li><span>Формат</span>Онлайн: письменные разборы, видеоответы и личные сессии</li>
+    </ul>
+  </div>
+</div></section>
+
+<!-- ================= С ЧЕМ ПРИХОДЯТ ================= -->
+<section id="zaprosy" class="tinted"><div class="wrap">
+  <p class="eyebrow">С чем приходят</p>
+  <h2>Обычно за вопросом уже стоит ситуация, которую трудно распутать привычными способами</h2>
+  <p class="sect-lead">Люди приходят не из любопытства к отдельному положению в карте. Чаще всего
+  главная мысль звучит так: «Я многое понимаю о себе, но всё равно возвращаюсь в один и тот же круг».</p>
+
+  <div class="grid-3">
+    <div class="card"><div class="num">I</div>
+      <h3>Самореализация и работа</h3>
+      <p>Неясно, в чём сильная сторона, почему трудно проявляться и куда двигаться дальше.</p></div>
+
+    <div class="card"><div class="num">II</div>
+      <h3>Деньги</h3>
+      <p>Доход есть, но устойчивость не формируется: сложно накопить, назвать свою стоимость,
+      почувствовать право на материальную опору.</p></div>
+
+    <div class="card"><div class="num">III</div>
+      <h3>Отношения</h3>
+      <p>Повторяются схожие партнёрские сценарии, трудно выстраивать границы, выбирать
+      партнёра, доверять или сохранять близость.</p></div>
+
+    <div class="card"><div class="num">IV</div>
+      <h3>Тревога и напряжение</h3>
+      <p>Голова постоянно занята, сложно заснуть, невозможно расслабиться даже тогда,
+      когда внешних причин для тревоги немного.</p></div>
+
+    <div class="card"><div class="num">V</div>
+      <h3>Выбор и перемены</h3>
+      <p>Впереди решение о работе, переезде, проекте или отношениях. И страшно разрушить то,
+      что уже создано.</p></div>
+
+    <div class="card"><div class="num">VI</div>
+      <h3>Понимание себя</h3>
+      <p>Хочется соединить противоречивые стороны характера, понять свои реакции
+      и перестать считать себя «неправильной».</p></div>
+  </div>
+
+  <div class="not">
+    <p class="t">Когда моя работа не подойдёт</p>
+    <ul>
+      <li>Если нужно точное предсказание событий и возможность передать ответственность за решение мне.</li>
+      <li>Если вы ждёте медицинского, юридического или финансового заключения.</li>
+      <li>Если нужен длительный терапевтический процесс: разбор его не заменяет.</li>
+    </ul>
+  </div>
+</div></section>
+
+<!-- ================= ФОРМАТЫ ================= -->
+<section id="formats"><div class="wrap">
+  <p class="eyebrow">Форматы работы</p>
+  <h2>Выберите глубину, которая подходит вашей ситуации</h2>
+  <p class="sect-lead">Если пока непонятно, что именно нужно, начните с бесплатного разговора о запросе —
+  вместе соберём мысли и сформулируем главный вопрос. Чтобы записаться, напишите мне в Telegram
+  кодовое слово нужного формата.</p>
+
+  <div class="tiers">
+
+    <div class="tier free">
+      <p class="meta">20 минут · онлайн</p>
+      <h3>Разговор о запросе</h3>
+      <p>Если Вы пока смутно понимаете, какая помощь Вам нужна, мы вместе соберём мысли
+      и сформулируем главный вопрос.</p>
+      <p class="grow">После разговора Вы будете понимать, какой формат подойдёт именно
+      для Вашей ситуации.</p>
+      <div class="price"><span class="free-tag">Бесплатно</span></div>
+      <a class="word" href="https://t.me/astrotune_practice" target="_blank" rel="noopener">Написать слово <b>ЗАПРОС</b></a>
+    </div>
+
+    <div class="tier">
+      <p class="meta">Хорарный разбор · видеоответ</p>
+      <h3>Один важный вопрос</h3>
+      <p>Подходит, когда решение нужно принять в конкретной ситуации:</p>
+      <ul>
+        <li>состоится ли событие</li>
+        <li>стоит ли соглашаться</li>
+        <li>получится ли задуманное</li>
+        <li>как будет развиваться ситуация</li>
+      </ul>
+      <p class="grow">Вы получите видео с разбором вопроса и моими выводами.</p>
+      <div class="price"><b>1 500 ₽</b></div>
+      <a class="word" href="https://t.me/astrotune_practice" target="_blank" rel="noopener">Написать слово <b>ВОПРОС</b></a>
+    </div>
+
+    <div class="tier">
+      <p class="meta">Письменный разбор по Вашей карте</p>
+      <h3>Тематический разбор для важного решения</h3>
+      <p>Для решений, которые хочется рассмотреть глубоко и спокойно:</p>
+      <ul>
+        <li>финансы</li>
+        <li>переезд и эмиграция</li>
+        <li>недвижимость</li>
+        <li>выбор профессии</li>
+        <li>стратегия продвижения</li>
+      </ul>
+      <p class="grow">Вы получите подробный персональный файл с выводами, возможными рисками
+      и практическими ориентирами.</p>
+      <div class="price"><b>12 000 ₽</b></div>
+      <a class="word" href="https://t.me/astrotune_practice" target="_blank" rel="noopener">Написать слово <b>РАЗБОР</b></a>
+    </div>
+
+    <div class="tier">
+      <p class="meta">Разбор карты + индивидуальная сессия</p>
+      <h3>Сессия «Карта плюс регресс»</h3>
+      <p>Для ситуаций, которые повторяются, хотя Вы уже многое понимаете о себе.</p>
+      <p class="grow">Сначала я нахожу в карте точку внутреннего напряжения. Затем в сессии
+      мы идём к опыту, из которого выросла привычная реакция.</p>
+      <div class="price"><b>15 000 ₽</b></div>
+      <a class="word" href="https://t.me/astrotune_practice" target="_blank" rel="noopener">Написать слово <b>СЕССИЯ</b></a>
+    </div>
+
+    <div class="tier">
+      <p class="meta">Пакет из трёх встреч</p>
+      <h3>Три сессии «Карта плюс регресс»</h3>
+      <p>Подходит для запроса, в котором переплетены несколько слоёв: прошлый опыт,
+      повторяющиеся реакции и события сегодняшней жизни.</p>
+      <p class="grow">Три встречи позволяют последовательно пройти тему и закрепить изменения.</p>
+      <div class="price"><b>39 000 ₽</b><s>45 000 ₽</s></div>
+      <a class="word" href="https://t.me/astrotune_practice" target="_blank" rel="noopener">Написать слова <b>ТРИ СЕССИИ</b></a>
+    </div>
+
+    <div class="tier">
+      <p class="meta">11 смысловых разделов · письменно</p>
+      <h3>Большой натальный портрет</h3>
+      <p>Подробное исследование Вашего внутреннего устройства и жизненного пути.</p>
+      <p class="grow">В разбор входят характер, способности, отношения, деньги, реализация,
+      внутренние противоречия, повторяющиеся сценарии и направления развития.</p>
+      <div class="price"><b>20 000 ₽</b></div>
+      <a class="word" href="https://t.me/astrotune_practice" target="_blank" rel="noopener">Написать слово <b>ПОРТРЕТ</b></a>
+    </div>
+
+    <div class="tier">
+      <p class="meta">Навигация по датам на год</p>
+      <h3>Персональный календарь</h3>
+      <p>Составляется с учётом Вашей натальной карты. Можно выбрать одну тему:
+      финансы или знакомства и отношения.</p>
+      <p class="grow">В календаре будут отмечены благоприятные периоды, дни повышенного
+      внимания и пояснения по каждому месяцу.</p>
+      <div class="price"><b>5 000 ₽</b></div>
+      <a class="word" href="https://t.me/astrotune_practice" target="_blank" rel="noopener">Написать слово <b>КАЛЕНДАРЬ</b></a>
+    </div>
+
+    <div class="tier soon">
+      <p class="meta">Готовится · 12 практик по 25–30 минут</p>
+      <h3>Медитации моим голосом</h3>
+      <p>Для сна, снижения внутреннего напряжения, восстановления контакта с собой
+      и мягкой работы с эмоциональными состояниями.</p>
+      <p class="grow">Комплект сейчас в записи. Когда практики будут готовы, я расскажу
+      о них первым тем, кто оставил заявку.</p>
+      <div class="soon-line">Скоро</div>
+      <a class="word" href="https://t.me/astrotune_practice" target="_blank" rel="noopener">Сообщить о выходе — слово <b>МЕДИТАЦИИ</b></a>
+    </div>
+
+  </div>
+  <p class="tier-note">Для письменных форматов понадобятся дата, время и место рождения.
+  Перед началом я отвечу, подходит ли выбранный формат вашему запросу.</p>
+</div></section>
+
+<!-- ================= ОТЗЫВЫ ================= -->
+<section id="reviews" class="tinted"><div class="wrap">
+  <p class="eyebrow">Отзывы</p>
+  <h2>Что пишут после разборов и сессий</h2>
+  <p class="sect-lead">Сообщения из личной переписки, опубликованы с согласия авторов.
+  Нажмите на любой отзыв, чтобы прочитать целиком.</p>
+  <div class="reviews" id="reviews-grid"></div>
+</div></section>
+
+<!-- ================= ВОПРОСЫ ================= -->
+<section id="faq"><div class="wrap">
+  <p class="eyebrow">Обычные сомнения</p>
+  <h2>О чём чаще всего спрашивают перед началом</h2>
+
+  <div class="faq">
+    <div class="fq"><h3>«Будет много общих слов»</h3>
+      <p>Разбор строится вокруг вашего вопроса. Я показываю, какие данные учитываю,
+      как вывод связан с ситуацией и что именно останется у вас на руках.</p></div>
+
+    <div class="fq"><h3>«Меня начнут пугать»</h3>
+      <p>Фатальных прогнозов здесь нет. Один и тот же показатель проживается
+      по-разному, и разговор идёт об уровне проживания и о выборе.</p></div>
+
+    <div class="fq"><h3>«Мне скажут менять всю жизнь»</h3>
+      <p>Рекомендации учитывают вашу реальность и запас сил. Изменение может идти
+      постепенно, через небольшие действия и наблюдение за собой.</p></div>
+
+    <div class="fq"><h3>«Я уже многое про себя знаю»</h3>
+      <p>Ценность появляется в соединении разрозненных наблюдений в систему
+      и в том, чтобы увидеть внутренние противоречия, которые обычно остаются
+      незамеченными.</p></div>
+
+    <div class="fq"><h3>«Я не хочу созвона»</h3>
+      <p>Есть форматы без созвона: письменные разборы, видеоответы, календарь и медитации.
+      Общение письменное, в удобном вам темпе.</p></div>
+
+    <div class="fq"><h3>«А вдруг мне навяжут терапию»</h3>
+      <p>Границы продукта обозначаются сразу. Работа носит практический характер
+      и не превращается в длительное сопровождение без вашего желания.</p></div>
+  </div>
+</div></section>
+
+<!-- ================= ФИНАЛ ================= -->
+<div class="final"><div class="wrap">
+  <h2>Начнём с вашего вопроса</h2>
+  <div class="goldrule"></div>
+  <p>Напишите мне и опишите ситуацию своими словами. Я отвечу, подходит ли выбранный формат
+  вашему запросу, и расскажу про сроки. Если он вам не подойдёт, я скажу об этом сразу.</p>
+  <a class="btn" href="https://t.me/astrotune_practice" target="_blank" rel="noopener">Написать в Telegram</a>
+  <p class="under" style="margin-top:22px">Не знаете, с чего начать — напишите слово «ЗАПРОС»,
+  и мы соберём вопрос вместе. Это бесплатно.</p>
+</div></div>
+
+<footer><div class="wrap">
+  <p class="who">Евгения Романова · психолог, астролог · канал «Тонкие настройки»</p>
+  <p>Telegram: <a href="https://t.me/astrotune_practice" target="_blank" rel="noopener">@astrotune_practice</a>
+     · почта: <a href="mailto:tonkiyenastroyki@mail.ru">tonkiyenastroyki@mail.ru</a></p>
+
+  <div class="foot-sep"></div>
+
+  <ul class="legal">
+    <li><a href="politika-personalnyh-dannyh.html">Политика обработки персональных данных</a></li>
+  </ul>
+
+  <p>Обращаясь ко мне за консультацией, вы подтверждаете, что ознакомлены
+  с политикой обработки персональных данных.</p>
+  <p class="req">Романова Евгения Алумбаевна · плательщик налога на профессиональный доход · ИНН 591108165378</p>
+  <p class="req">Консультации носят информационно-консультационный характер и не заменяют медицинскую,
+  юридическую или психотерапевтическую помощь.</p>
+</div></footer>
+
+<!-- ================= ЛАЙТБОКС ================= -->
+<div class="lb" id="lb">
+  <button class="lb-close" id="lb-close" aria-label="Закрыть">✕</button>
+  <button class="lb-prev" id="lb-prev" aria-label="Предыдущий">‹</button>
+  <img id="lb-img" alt="Отзыв">
+  <button class="lb-next" id="lb-next" aria-label="Следующий">›</button>
+  <div class="lb-count" id="lb-count"></div>
+</div>
+
+<script>
+const REVIEWS = [
+  'Снимок экрана 2026-07-27 в 14.37.58.png',
+  'Снимок экрана 2026-07-27 в 14.38.06.png',
+  'Снимок экрана 2026-07-27 в 14.38.14.png',
+  'Снимок экрана 2026-07-27 в 14.38.20.png',
+  'Снимок экрана 2026-07-27 в 14.38.28.png',
+  'Снимок экрана 2026-07-27 в 14.38.37.png',
+  'Снимок экрана 2026-07-27 в 14.38.45.png',
+  'Снимок экрана 2026-07-27 в 14.38.52.png',
+  'Снимок экрана 2026-07-27 в 14.39.00.png',
+  'Снимок экрана 2026-07-27 в 14.39.07.png',
+  'Снимок экрана 2026-07-27 в 14.39.18.png',
+  'Снимок экрана 2026-07-27 в 14.39.25.png',
+  'Снимок экрана 2026-07-27 в 14.39.33.png',
+  'Снимок экрана 2026-07-27 в 14.39.40.png',
+  'Снимок экрана 2026-07-27 в 14.39.49.png',
+  'Снимок экрана 2026-07-27 в 14.40.00.png',
+  'Снимок экрана 2026-07-27 в 14.40.08.png',
+  'Снимок экрана 2026-07-27 в 14.40.18.png',
+  'Снимок экрана 2026-07-27 в 14.40.31.png',
+  'Снимок экрана 2026-07-27 в 14.40.41.png',
+  'Снимок экрана 2026-07-27 в 14.40.49.png'
+];
+const src = n => 'отзывы/' + encodeURIComponent(n);
+
+const grid = document.getElementById('reviews-grid');
+REVIEWS.forEach((name, i) => {
+  const b = document.createElement('button');
+  b.className = 'rev';
+  b.setAttribute('aria-label', 'Отзыв ' + (i + 1));
+  const img = document.createElement('img');
+  img.src = src(name);
+  img.alt = 'Отзыв ' + (i + 1);
+  img.loading = 'lazy';
+  b.appendChild(img);
+  b.addEventListener('click', () => open(i));
+  grid.appendChild(b);
+});
+
+const lb = document.getElementById('lb');
+const lbImg = document.getElementById('lb-img');
+const lbCount = document.getElementById('lb-count');
+let cur = 0;
+
+function open(i){
+  cur = i;
+  lbImg.src = src(REVIEWS[cur]);
+  lbCount.textContent = (cur + 1) + ' из ' + REVIEWS.length;
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function close(){
+  lb.classList.remove('open');
+  document.body.style.overflow = '';
+}
+function step(d){ open((cur + d + REVIEWS.length) % REVIEWS.length); }
+
+document.getElementById('lb-close').addEventListener('click', close);
+document.getElementById('lb-prev').addEventListener('click', e => { e.stopPropagation(); step(-1); });
+document.getElementById('lb-next').addEventListener('click', e => { e.stopPropagation(); step(1); });
+lb.addEventListener('click', e => { if (e.target === lb || e.target === lbImg) close(); });
+document.addEventListener('keydown', e => {
+  if (!lb.classList.contains('open')) return;
+  if (e.key === 'Escape') close();
+  if (e.key === 'ArrowLeft') step(-1);
+  if (e.key === 'ArrowRight') step(1);
+});
+
+const nav = document.getElementById('nav');
+addEventListener('scroll', () => nav.classList.toggle('stuck', scrollY > 10), { passive: true });
+</script>
+</body></html>
